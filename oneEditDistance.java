@@ -24,7 +24,7 @@ public class oneEditDistance {
 		}		
 		if (i == m) return shift > 0;
 		
-		if (shift == 0) i++; //if shift=1, skip this non-matching
+		if (shift == 0) i++; //if shift=0, skip this non-matching
 		while (i < m && s.charAt(i) == t.charAt(i+shift)){
 			i++;
 		}
