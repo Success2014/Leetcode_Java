@@ -1,5 +1,9 @@
 package first;
-
+/**
+ * http://blog.csdn.net/linhuanmars/article/details/20748171
+ * @author Neo
+ *
+ */
 public class validSudoku {
 	public boolean isValidSudoku(char[][] board) {
         if (board == null || board.length != 9 || board[0].length != 9) return false;
