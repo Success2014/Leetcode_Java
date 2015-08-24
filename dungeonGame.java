@@ -43,5 +43,15 @@ public class dungeonGame {
         }
         return dp[0][0];
     }
+	public static void main(String[] args){
+		int[][] dungeon1 = {{-1,-1,0},{-2,1,-2},{1,0,-1}};
+		int[][] dungeon2 = {{-1,-2,-1},{-2,-3,1},{2,1,-2}};
+		int[][] dungeon3 = {{-2,-3,3},{-5,-10,1},{10,30,-5}};
+		dungeonGame dg = new dungeonGame();
+		System.out.println(dg.calculateMinimumHP(dungeon1));
+		System.out.println(dg.calculateMinimumHP(dungeon2));
+		System.out.println(dg.calculateMinimumHP(dungeon3));
+		
+	}
 
 }
