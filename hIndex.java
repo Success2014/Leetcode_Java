@@ -1,5 +1,7 @@
 package first;
 
+import java.util.Arrays;
+
 public class hIndex {
 	/**
 	 * idea:
@@ -34,7 +36,7 @@ public class hIndex {
     }
 	
 	/**
-	 * Method 2, O(n)
+	 * Method 2, O(n) time, O(n) space.
 	 * Two-pass.
 	 * First use an array to record the number of each number of citations.
 	 * Then keep a running sum from the largest back to the smallest. 
@@ -65,6 +67,30 @@ public class hIndex {
             }
         }
         return 0;
+    }
+	
+	/**
+	 * O(nlogn) time, O(1) space.
+	 * Sort it first. Then from last going back to first.
+	 * If current citation is larger than the distance, update h-index as the distance.
+	 * @param citations
+	 * @return
+	 */
+	public int hIndex3(int[] citations) {
+        int n = citations.length;
+        if (n == 0){
+            return 0;
+        }
+        Arrays.sort(citations);
+        
+        int res = 0;
+        for (int i = n - 1; i >= 0; i--){
+            if (citations[i] >= n - 1 - i + 1){// (n - 1) - i + 1 is the distance
+                res = n - i;
+            }
+        }
+        
+        return res;
     }
 
 }
