@@ -28,13 +28,37 @@ public class jumpGame {
         }
         return dp[n-1] == 1;
     }
+	/**
+	 * DP. For each element, check if any of the past elements can reach it.
+	 * @param nums
+	 * @return
+	 */
+	public boolean canJump2(int[] nums) {
+        if (nums == null || nums.length == 0){
+            return true;
+        }
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = 1;
+        
+        for (int i = 1; i < n; i++){
+            for (int j = 0; j < i; j++){
+                if (dp[j] == 1 && j + nums[j] >= i){//element j must be valid.
+                    dp[i] = 1;
+                    break;
+                }
+            }
+        }
+        return dp[n-1] == 1;
+    }
+	
 	
 	/**
 	 * Greedy. O(n).
 	 * @param nums
 	 * @return
 	 */
-	public boolean canJump2(int[] nums) {
+	public boolean canJump3(int[] nums) {
         if (nums == null || nums.length == 0){
             return true;
         }
