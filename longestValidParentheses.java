@@ -50,6 +50,9 @@ public class longestValidParentheses {
 	 * When we see a ')', if we still have '(', dp[i] = dp[i-1]+2;
 	 * if i - dp[i] >= 0, then we need to add dp[i-dp[i]], meaning we need to 
 	 * concatenate these numbers.
+	 *  0 1 2 3 4 5
+	 *  ( ( ) ) ( )
+	 *  0 0 2 4 0 2+4
 	 * @param s
 	 * @return
 	 */
