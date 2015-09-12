@@ -31,6 +31,44 @@ public class reverseLinkedListII {
         
         return dummy.next;
    }
+	/**
+	 * Same method, but may be clearer.
+	 * @param head
+	 * @param m
+	 * @param n
+	 * @return
+	 */
+	public ListNode reverseBetween2(ListNode head, int m, int n) {
+        if (head == null || m > n){
+            return null;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        int count = 1;
+        
+        while (count < m){
+            head = head.next;
+            count++;
+        }
+        ListNode premNode = head;
+        ListNode mNode = head.next;
+        ListNode nNode = mNode;
+        ListNode postnNode = nNode.next;
+        
+        while (count < n){//Note here. Three nodes, only need to reverse twice in-between.
+            ListNode temp = postnNode.next;
+            postnNode.next = nNode;
+            nNode = postnNode;
+            postnNode = temp;
+            count++;
+        }
+        premNode.next = nNode;//plus these two reverses.
+        mNode.next = postnNode;
+        
+        return dummy.next;
+        
+   }
 	
 	public static void main (String[] args){
 		ListNode node1 = new ListNode(1);
