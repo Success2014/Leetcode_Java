@@ -16,7 +16,7 @@ public class permutations {
     
     public void helper(int[] nums, List<List<Integer>> res, ArrayList<Integer> level){
         if (level.size() == nums.length){
-            res.add(level);
+        	res.add(new ArrayList<Integer>(level));
             return;
         }
         for(int i = 0; i < nums.length; i++){
@@ -28,6 +28,10 @@ public class permutations {
             level.remove(level.size() - 1);
         }
         
+    }
+    
+    public static void main(String[] args){
+    	
     }
 
 }
