@@ -24,12 +24,40 @@ public class subsets {
             list.remove(list.size() - 1);
         }
     }
+    
+    
+    public List<List<Integer>> subsetsIter(int[] nums) {
+        ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
+        int n = nums.length;
+        if (n == 0){
+            return res;
+        }
+        Arrays.sort(nums);
+        //add empty set, then res has size 1
+        res.add(new ArrayList<Integer>());
+        for (int i = 0; i < n; i++){
+            int size = res.size();//size of current result
+            for (int j = 0; j < size; j++){
+                List<Integer> list = new ArrayList<Integer>();
+                list.addAll(res.get(j));
+                list.add(nums[i]);
+                res.add(list);
+            }
+        }
+        
+        return res;
+    }  
+    
+    
+    
     public static void main(String[] args){
     	subsets ss = new subsets();
     	int[] nums1 = {0};
-    	int[] nums2 = {1,2};
-    	//System.out.println(ss.subsetsM(nums1));
-    	System.out.println(ss.subsetsM(nums2));
+    	int[] nums2 = {1,2,3};
+    	int[] nums3 = {1,2,2};
+    	System.out.println(ss.subsetsM(nums1));
+    	System.out.println(ss.subsetsIter(nums2));
+    	System.out.println(ss.subsetsM(nums3));
     	
     }
 
