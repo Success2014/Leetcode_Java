@@ -44,5 +44,35 @@ public class subsetsII {
             list.remove(list.size() - 1);
         }
     }
+    
+    /**
+     * Iterative method
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsetsWithDupIter(int[] nums) {
+        ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
+        int n = nums.length;
+        if (n == 0){
+            return res;
+        }
+        Arrays.sort(nums);
+        //add empty set, then res has size 1
+        res.add(new ArrayList<Integer>());
+        for (int i = 0; i < n; i++){
+            int size = res.size();//size of current result
+            for (int j = 0; j < size; j++){
+                List<Integer> list = new ArrayList<Integer>();
+                list.addAll(res.get(j));
+                list.add(nums[i]);
+                if (res.contains(list)){
+                    continue;
+                }
+                res.add(list);
+            }
+        }
+        
+        return res;
+    }
 
 }
