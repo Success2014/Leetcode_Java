@@ -80,6 +80,28 @@ public class mergeKSortedLinkedLists {
         }
         return dummy.next;
     }
+	
+	/**
+	 * Method 3, divide and conquer.
+	 * @param lists
+	 * @return
+	 */
+	public ListNode mergeKLists3(ListNode[] lists) {
+        if (lists.length == 0){
+            return null;
+        }
+        return helper(lists, 0, lists.length - 1);
+    }
+    
+    public ListNode helper(ListNode[] lists, int start, int end){
+        if (start == end){
+            return lists[start];
+        }
+        int mid = start + (end - start) / 2;
+        ListNode left = helper(lists, start, mid);
+        ListNode right = helper(lists, mid + 1, end);
+        return mergeTwoLists(left, right);
+    }   
 
 }
 
