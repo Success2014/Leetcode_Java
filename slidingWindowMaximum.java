@@ -1,5 +1,6 @@
 package first;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.ArrayDeque;
 /**
@@ -20,21 +21,36 @@ import java.util.ArrayDeque;
  */
 public class slidingWindowMaximum {
 	public int[] maxSlidingWindow(int[] nums, int k) {
-		if (nums == null || k <= 0) return new int[0];
+		if (nums == null || k <= 0) {
+			return new int[0];
+		}
         int n  = nums.length;
         int[] res = new int[n - k + 1];
         int ri = 0; // index of the result
-        Deque<Integer> q = new ArrayDeque<Integer>();
+        Deque<Integer> q = new ArrayDeque<Integer>();//q stores index
         
         for (int i = 0; i < n; i++){
-            while (!q.isEmpty() && q.peek() < i - (k - 1)) q.poll();
-            
-            while (!q.isEmpty() && nums[i] >= nums[q.peekLast()]) q.pollLast();
-            
+        	// remove numbers out of range k
+            while (!q.isEmpty() && q.peek() < i - (k - 1)) {
+            	q.poll();
+            }
+            // remove smaller numbers in k range as they are useless
+            while (!q.isEmpty() && nums[i] >= nums[q.peekLast()]) {
+            	q.pollLast();
+            }
+            // q contains index... r contains content
             q.offer(i);
-            if (i >= k - 1) res[ri++] = nums[q.peek()];
+            if (i >= k - 1) {
+            	res[ri++] = nums[q.peek()];
+            }
         }
         return res;
     }
+	
+	public static void main(String[] args){
+		slidingWindowMaximum swm = new slidingWindowMaximum();
+		int[] nums1 = {1, 3, -1, -3, 5, 3, 6, 7};
+		System.out.println(Arrays.toString(swm.maxSlidingWindow(nums1, 3)));
+	}
 
 }
