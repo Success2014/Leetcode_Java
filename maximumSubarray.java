@@ -1,6 +1,11 @@
 package first;
 
 public class maximumSubarray {
+	/**
+	 * DP
+	 * @param nums
+	 * @return
+	 */
 	public int maxSubArray(int[] nums) {
         if (nums.length == 0) {
             return 0;
@@ -14,5 +19,31 @@ public class maximumSubarray {
         }
         return global;
     }
+	/**
+	 * Use prefix sum
+	 * @param nums
+	 * @return
+	 */
+	public int maxSubArray2(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int sum = 0;
+        int minSum = 0;
+        int res = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            res = Math.max(res, sum - minSum);
+            minSum = Math.min(minSum, sum);
+        }
+        return res;
+        
+    }
+	
+	public static void main(String[] args) {
+		maximumSubarray ms = new maximumSubarray();
+		int[] nums = {2,-3,-1,-4};
+		System.out.println(ms.maxSubArray2(nums));
+	}
 
 }
