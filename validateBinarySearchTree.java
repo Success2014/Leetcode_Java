@@ -1,5 +1,5 @@
 package first;
-
+import java.util.*;
 public class validateBinarySearchTree {
 	/**
 	 * Method 1, set a upper and lower bound for each node, check if each node is in the bounds.
@@ -34,6 +34,32 @@ public class validateBinarySearchTree {
 	    return false;
 	}
 	
+	/**
+	 * Method 3, in-order traversal. Iterative solution.
+	 * @param root
+	 * @return
+	 */
+	public boolean isValidBST3(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode prev = null;
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                TreeNode node = stack.pop();
+                if (prev!= null && node.val <= prev.val) {
+                    return false;
+                }
+                prev = node;
+                root = node.right;
+            }
+        }
+        return true;
+    }
 	
 	
     
