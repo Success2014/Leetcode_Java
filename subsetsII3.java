@@ -22,5 +22,18 @@ public class subsetsII3 {
             list.remove(list.size() - 1);
         }
     }
+    
+public void dfs2(int[] nums, ArrayList<List<Integer>> res, ArrayList<Integer> list, int pos) {
+        
+        res.add(new ArrayList<Integer>(list));
+        for (int i = pos; i < nums.length; i++) {
+            if (i != pos && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            list.add(nums[i]);
+            dfs(nums, res, list, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
 
 }
