@@ -7,9 +7,9 @@ public class palindromePartitionII {
         }
         int n = s.length();
         boolean[][] isPalA = isPal(s);
-        int[] dp = new int[n+1];
+        int[] dp = new int[n+1];//cuts
         for (int i = 0; i < n + 1; i++){
-            dp[i] = i - 1;
+            dp[i] = i - 1;//at most i - 1 cuts
         }
         
         for (int i = 1; i < n + 1; i++){
@@ -39,7 +39,26 @@ public class palindromePartitionII {
         //distance >= 2, move to upper-right corner diagonally
         for (int len = 2; len < n; len++){
             for (int start = 0; start + len < n; start++){
-                isPalA[start][start+len] = isPalA[start+1][start+len-1] &&(s.charAt(start)==s.charAt(start+len));
+                isPalA[start][start+len] = isPalA[start+1][start+len-1] && (s.charAt(start)==s.charAt(start+len));
+            }
+        }
+        return isPalA;
+    }
+    
+    /**
+     * i moves from the last to the first. j is from i to the end.
+     * @param s
+     * @return
+     */
+    public boolean[][] getIsPalindrome2(String s) {
+        int n = s.length();
+        boolean[][] isPalA =  new boolean[n][n];
+        
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || isPalA[i + 1][j - 1])) {
+                    isPalA[i][j] = true;
+                }
             }
         }
         return isPalA;
