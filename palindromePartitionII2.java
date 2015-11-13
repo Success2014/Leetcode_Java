@@ -39,5 +39,24 @@ public class palindromePartitionII2 {
         }
         return isPalA;
     }
+    
+    /**
+     * i moves from the last to the first. j is from i to the end.
+     * @param s
+     * @return
+     */
+    public boolean[][] getIsPalindrome2(String s) {
+        int n = s.length();
+        boolean[][] isPalA =  new boolean[n][n];
+        
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || isPalA[i + 1][j - 1])) {
+                    isPalA[i][j] = true;
+                }
+            }
+        }
+        return isPalA;
+    }
 
 }
