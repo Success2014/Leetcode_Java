@@ -39,7 +39,7 @@ public class mergeKSortedLinkedLists {
 	public ListNode mergeKLists2(ListNode[] lists) {
         if (lists.length == 0) return null;
         int end = lists.length - 1;
-        while (end > 0){
+        while (end > 0){ // could write in other ways, see the second trial of this questions
             int begin = 0;
             while (begin < end){
                 lists[begin] = mergeTwoLists(lists[begin], lists[end]);
