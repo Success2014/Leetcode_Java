@@ -70,6 +70,7 @@ public class wordLadderII {
         path.add(beginWord);
         if (beginWord.equals(endWord)){
             result.add(new ArrayList<String>(path));
+          //return; //no return here, otherwise will remove less elements
         }
         else{
             ArrayList<String> nextWord = map.get(beginWord);

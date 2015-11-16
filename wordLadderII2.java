@@ -39,7 +39,7 @@ public class wordLadderII2 {
         path.add(beginWord);
         if (beginWord.equals(endWord)) {
             res.add(new ArrayList<String>(path));
-            
+            //return; //no return here, otherwise will remove less elements
         } else {
 	        for (String word: nbMap.get(beginWord)) {
 	            if (disMap.get(beginWord) != disMap.get(word) + 1) {
