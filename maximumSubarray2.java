@@ -35,5 +35,19 @@ public class maximumSubarray2 {
         }
         return res;
     }
+	
+	public int maxSubArray3(int[] nums) {
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        }
+        int local = nums[0];
+        int global = nums[0];
+        for (int i = 1; i < n; i++) {
+            local = Math.max(local + nums[i], nums[i]);
+            global = Math.max(local, global);
+        }
+        return global;
+    }
 
 }
