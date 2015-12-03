@@ -22,5 +22,18 @@ public class maximumSubarray2 {
         }
         return max;
     }
+	
+	public int maxSubArray2(int[] nums) {
+        int n = nums.length;
+        int sum = 0;
+        int minSum = 0;
+        int res = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            res = Math.max(res, sum - minSum);
+            minSum = Math.min(minSum, sum);
+        }
+        return res;
+    }
 
 }
