@@ -1,5 +1,10 @@
 package first;
 
+/**
+ * 
+ * @author Neo
+ *
+ */
 public class maximumGap {
 	class Bucket {
         int low;
@@ -15,6 +20,7 @@ public class maximumGap {
             return 0;
         }
         
+        // find max and min of the array
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         
@@ -23,12 +29,14 @@ public class maximumGap {
             min = Math.min(min, nums[i]);
         }
         
+        // initialize an array of buckets
         Bucket[] buckets = new Bucket[n + 1];
         for (int i = 0; i <= n; i++) {
             buckets[i] = new Bucket();
         }
         
         double interval = (double) n / (max - min);
+        //distribute every number to a bucket array
         for (int i = 0; i < n; i++) {
             int index = (int) ((nums[i] - min) * interval);
             if (buckets[index].low == -1) {
@@ -40,14 +48,13 @@ public class maximumGap {
             }
         }
         
-        int low = buckets[0].high;
-        int high = buckets[0].low;
+        //scan buckets to find maximum gap
         int res = buckets[0].high - buckets[0].low;
+        int prev = buckets[0].high;
         for (int i = 1; i <= n; i++) {
             if (buckets[i].low != -1) {
-                high = buckets[i].low;
-                res = Math.max(res, high - low);
-                low = buckets[i].high;
+                res = Math.max(res, buckets[i].low - prev);
+                prev = buckets[i].high;
             }
         }
         return res;
