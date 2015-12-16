@@ -37,7 +37,7 @@ public class trappingRainWater {
 	 * @return
 	 */
 	public int trap2(int[] height) {
-        int n = height.length;
+		int n = height.length;
         if (n <= 1) {
             return 0;
         }
